@@ -16,15 +16,16 @@ const Students = (): React.ReactElement => {
   return (
     <div className={styles.Students}>
       {students.map((student: StudentsInterface) => (
-<Student
-key={student.id}
-student={student}
-onDelete={onDeleteHandler}
-/>        
+          <Student
+          key={student.id}
+          student={student}
+          onDelete={onDeleteHandler}
+          />                 
  
       ))}
     </div>
   );
+  
 };
 
 export default Students;
