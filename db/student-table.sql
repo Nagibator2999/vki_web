@@ -9,3 +9,6 @@ CREATE TABLE student(
     groupId INTEGER,
     FOREIGN KEY (groupId) REFERENCES class(id)
 );
+ALTER TABLE student ADD uuid [text];
+
+DELETE FROM student;

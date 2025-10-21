@@ -1,20 +1,49 @@
 import type StudentInterface from '@/types/StudentInterface';
-import styles from './Student.module.scss';
+import { useForm, type SubmitHandler } from 'react-hook-form';
+import styles from './AddStudent.module.scss';
+
+export type FormFields = Pick<StudentInterface, 'firstName' | 'lastName' | 'middleName'>;
 
 interface Props {
-  student: StudentInterface;
-  onAdd: (id: number) => void;
+  onAdd: (studentForm: FormFields) => void;
 }
 
-const AddStudent = ({ student, onAdd }: Props): React.ReactElement => {
-  const onAddHandler = (): void => {
-    onAdd(student.id);
-  };
+const AddStudent = ({ onAdd }: Props): React.ReactElement => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormFields>();
+
+  const onSubmit: SubmitHandler<FormFields> = studentForm => onAdd(studentForm);
 
   return (
-    <div className={`${styles.Student} ${student.isAdd ? styles['--isAdd'] : '' } `}>
-      {`${student.id} - ${student.lastName} ${student.firstName} ${student.middleName}`}
-      <button onClick={onAddHandler}>Удалить</button>
+    <div className={styles.AddStudent}>
+      <h2>Добавления студента</h2>
+
+      <form onSubmit={handleSubmit(onSubmit)}>
+
+        <input
+          placeholder="Фамилия"
+          {...register('lastName', { required: true })}
+        />
+        {errors.lastName && <div>Обязательное поле</div>}
+
+        <input
+          placeholder="Имя"
+          {...register('firstName', { required: true })}
+        />
+        {errors.firstName && <div>Обязательное поле</div>}
+
+        <input
+          placeholder="Отчество"
+          {...register('middleName', { required: true })}
+        />
+        {errors.middleName && <div>Обязательное поле</div>}
+
+        <input type="submit" value="Добавить" />
+      </form>
+
     </div>
   );
 };
