@@ -1,4 +1,5 @@
 POST http://localhost:3000/api/students
+<<<<<<< HEAD
 Content-Type: application/json   
 
 {
@@ -7,4 +8,13 @@ Content-Type: application/json
   "middleName": "middleName",
   "contacts": "contact",
   "groupId": 1
+=======
+Content-Type: application/json
+
+{
+    "firstName": "John",
+    "lastName": "LName",
+    "middleName": "middleName",
+    "groupId": 1
+>>>>>>> c0d6f0eb35a95e2a51a7c5a42ec9e85f06b82146
 }

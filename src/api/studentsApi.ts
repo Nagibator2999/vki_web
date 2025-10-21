@@ -33,15 +33,26 @@ export const deleteStudentApi = async (studentId: number): Promise<number> => {
   }
 };
 
+<<<<<<< HEAD
 export const addStudentApi = async (student: StudentInterface): Promise<StudentInterface> => {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API}students`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+=======
+export const createStudentApi = async (student: Omit<StudentInterface, 'id'> & { uuid?: string }) => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API}students`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+>>>>>>> c0d6f0eb35a95e2a51a7c5a42ec9e85f06b82146
       body: JSON.stringify(student),
     });
 
     if (!response.ok) {
+<<<<<<< HEAD
       throw new Error(`Ошибка HTTP: ${response.status}`);
     }
 
@@ -52,3 +63,14 @@ export const addStudentApi = async (student: StudentInterface): Promise<StudentI
     throw err;
   }
 };
+=======
+      throw new Error(`Ошибка HTTP: ${response.status} ${response.statusText}`);
+    }
+
+    return await response.json() as StudentInterface;
+  } catch (err) {
+    console.error('>>> createStudentApi', err);
+    throw err; 
+  }
+};
+>>>>>>> c0d6f0eb35a95e2a51a7c5a42ec9e85f06b82146
