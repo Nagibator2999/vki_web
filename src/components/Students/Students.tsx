@@ -3,9 +3,10 @@
 import useStudents from '@/hooks/useStudents';
 import type StudentInterface from '@/types/StudentInterface';
 import styles from './Students.module.scss';
-import Student from './Student/Student';
+import StudentItem from './StudentItem/StudentItem';
 import AddStudent, { type FormFields } from './AddStudents/AddStudent';
 import { v4 as uuidv4 } from 'uuid';
+import useGroups from '@/hooks/useGroups';
 
 const Students = (): React.ReactElement => {
   const {
@@ -14,33 +15,42 @@ const Students = (): React.ReactElement => {
     addStudentMutate,
   } = useStudents();
 
+  const { groups } = useGroups();
+
+  /**
+   * Удаление студента - обработчик события нажатия "удалить"
+   * @param studentId Ид студента
+   */
   const onDeleteHandler = (studentId: number): void => {
     if (confirm('Удалить студента?')) {
-      debugger;
       console.log('onDeleteHandler', studentId);
+      debugger;
 
       deleteStudentMutate(studentId);
     }
   };
 
+  /**
+   * Добавления студента - обработчик события нажатия "добавить"
+   * @param studentFormField Форма студента
+   */
   const onAddHandler = (studentFormField: FormFields): void => {
-    debugger;
     console.log('Добавление студента', studentFormField);
+    debugger;
 
     addStudentMutate({
       id: -1,
       ...studentFormField,
-      groupId: 1,
       uuid: uuidv4(),
     });
   };
 
   return (
     <div className={styles.Students}>
-      <AddStudent onAdd={onAddHandler} />
+      <AddStudent onAdd={onAddHandler} groups={groups} />
 
       {students.map((student: StudentInterface) => (
-        <Student
+        <StudentItem
           key={student.id || student.uuid}
           student={student}
           onDelete={onDeleteHandler}

@@ -10,13 +10,26 @@ const studentRepository = AppDataSource.getRepository(Student);
  * @returns Promise<StudentInterface[]>
  */
 export const getStudentsDb = async (): Promise<StudentInterface[]> => {
-  return await studentRepository.find();
+  const students = await studentRepository.find({ relations: ['group'] });
+  return students as StudentInterface[];
+};
+
+/**
+ * Получения студента по id
+ * @param id id студента
+ * @returns Promise<Student | null>
+ */
+export const getStudentByIdDb = async (id: number): Promise<Student | null> => {
+  return await studentRepository.findOne({
+    where: { id },
+    relations: ['group'],
+  });
 };
 
 /**
  * Удаления студента
  * @param studentId ИД удаляемого студента
- * @returns
+ * @returns Promise<number>
  */
 export const deleteStudentDb = async (studentId: number): Promise<number> => {
   await studentRepository.delete(studentId);
@@ -26,7 +39,7 @@ export const deleteStudentDb = async (studentId: number): Promise<number> => {
 /**
  * Добавление студента
  * @param studentField поля студента
- * @returns
+ * @returns Promise<StudentInterface>
  */
 export const addStudentDb = async (studentFields: Omit<StudentInterface, 'id'>): Promise<StudentInterface> => {
   const student = new Student();
@@ -35,10 +48,14 @@ export const addStudentDb = async (studentFields: Omit<StudentInterface, 'id'>):
     ...studentFields,
   });
   return newStudent;
+
+  // return getStudentById(newStudent.id);
 };
 
 /**
- * Добавление  рандомных студента
+ * Добавление рандомных студента
+ * @param amount количество рандомных записей
+ * @returns Promise<StudentInterface>
  */
 export const addRandomStudentsDb = async (amount: number = 10): Promise<StudentInterface[]> => {
   const students: StudentInterface[] = [];
@@ -49,9 +66,11 @@ export const addRandomStudentsDb = async (amount: number = 10): Promise<StudentI
     const newStudent = await addStudentDb({
       ...fio,
       contacts: 'contact',
-      groupId: 1,
+      groupId: Math.floor(Math.random() * 4) + 1,
     });
     students.push(newStudent);
+
+    console.log(newStudent);
   }
 
   return students;
