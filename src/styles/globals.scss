@@ -4,7 +4,6 @@
   --color: #272727;
   --color2: #FFF;
   --color3: #F00;
-  --color4: #00FF00;
   --background: #FFF;
   --background2: #E1E1E1;
   --background3: #434343;  
@@ -15,7 +14,6 @@
     --color: #d8d8d8;
     --color2: #000;
     --color3: #F00;
-    --color4: #00FF00;
     --background: #000;
     --background2: #1E1E1E;
     --background3: #BABABA;
@@ -68,6 +66,13 @@ body {
   // }
 }
 
+input, select {
+  font-family: PTSans;
+  // color: var(--color);
+  // background-color: var(--background);
+  font-size: 18px;
+}
+
 @mixin commons {
   font-family: PTSans;  
   color: var(--item-color);
@@ -118,4 +123,11 @@ h4 {
   // }
 }
 
-
+a {
+    &:link {
+    color: var(--color);
+  }
+  &:visited {
+    color: var(--color);
+  }
+}

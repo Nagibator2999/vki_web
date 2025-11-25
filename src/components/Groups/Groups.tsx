@@ -11,8 +11,8 @@ const Groups = (): React.ReactElement => {
   return (
     <div className={styles.Groups}>
       {groups.map((group: GroupInterface) => (
-        <section>
-          <h2 key={group.id}>
+        <section key={group.id}>
+          <h2>
             {group.name}
           </h2>
 
