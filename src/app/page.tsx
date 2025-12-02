@@ -8,7 +8,7 @@ const HomePage = (): React.ReactNode => (
     <BarChart
       // data={data}
       dimensions={{ width: 700, height: 450 }}
-      color="steelblue"
+      color="bisque"
     />
 
   </Page>

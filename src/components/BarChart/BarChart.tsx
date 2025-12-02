@@ -16,7 +16,7 @@ const BarChart: React.FC<BarChartProps> = ({
   // data,
   dimensions = { width: 600, height: 400 },
   margin = { top: 20, right: 30, bottom: 60, left: 60 },
-  color = 'steelblue',
+  color = 'bisque',
 }) => {
   const { groups } = useGroups();
   const data: BarData[] = groups.map(group => ({
@@ -39,7 +39,7 @@ const BarChart: React.FC<BarChartProps> = ({
     const svg = d3.select(svgRef.current)
       .attr('width', width)
       .attr('height', height)
-      .style('background', '#f9f9f9')
+      .style('background', '#FFFFF')
       .style('border-radius', '8px');
 
     // Создаем группу для графика с отступами
@@ -77,7 +77,7 @@ const BarChart: React.FC<BarChartProps> = ({
         d3.select(this)
           .transition()
           .duration(200)
-          .attr('fill', 'orange');
+          .attr('fill', 'burlywood');
 
         // Показываем tooltip
         g.append('text')

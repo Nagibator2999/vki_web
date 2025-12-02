@@ -22,7 +22,7 @@ const AddStudent = ({ onAdd, groups }: Props): React.ReactElement => {
 
   return (
     <div className={styles.AddStudent}>
-      <h2>Добавления студента</h2>
+      <h2>Добавление студента</h2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
 

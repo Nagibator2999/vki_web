@@ -2,18 +2,20 @@
 
 :root {  
   --color: #272727;
+  --colorR:#B78953;
   --color2: #FFF;
-  --color3: #F00;
-  --background: #FFF;
-  --background2: #E1E1E1;
-  --background3: #434343;  
+  --color3: #692721;
+  --background0:#FFFAFA;
+  --background: #FDF5E6;
+  --background2: #964734;
+  --background3: #4C563F;  
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --color: #d8d8d8;
     --color2: #000;
-    --color3: #F00;
+    --color3: #692721;
     --background: #000;
     --background2: #1E1E1E;
     --background3: #BABABA;
@@ -21,17 +23,18 @@
 }
 
 @font-face {
-  font-family: 'PTSans';
-  src: local('PTSans'), local('PTSans'),
-  url('/fonts/PTSansRegular.woff') format('woff');
+  font-family: 'Courier';
+  src: local('Courier'), local('Courier'),
+  url('/fonts/CourierRegular.woff') format('woff');
   font-weight: 400;
+
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'PTSans';
-  src: local('PTSans'), local('PTSans'),
-  url('/fonts/PTSansBold.woff') format('woff');
+  font-family: 'Courier';
+  src: local('Courier'), local('Courier'),
+  url('/fonts/CourierBold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
 }
@@ -56,9 +59,9 @@
 
 body {
   margin: 0;
-  font-family: PTSans;
+  font-family: Courier;
   color: var(--color);
-  background-color: var(--background);
+  background-color: var(--background0);
   font-size: 18px;
 
   // @media #{main.$mob} {
@@ -66,15 +69,15 @@ body {
   // }
 }
 
-input, select {
-  font-family: PTSans;
-  // color: var(--color);
-  // background-color: var(--background);
+input, select, button {
+  font-family: Courier;
+  color: var(--colorR);
+  background-color: var(--background);
   font-size: 18px;
 }
 
 @mixin commons {
-  font-family: PTSans;  
+  font-family: Courier;  
   color: var(--item-color);
   font-weight: 500;
 }
@@ -83,7 +86,7 @@ h1 {
   @include commons;
   font-size: 42px;
   font-weight: bold;
-  color: var(--current-color);
+  color: #243533;
 
   // @media #{main.$mob} {
   //   font-size: main.vwMax(24px);
